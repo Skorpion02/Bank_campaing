@@ -100,6 +100,19 @@ The `bank_campaing.ipynb` notebook is structured into the following main section
 
 The primary goal of this project is to develop and train a robust classification model capable of accurately predicting customer subscription to a term deposit. The notebook provides a detailed exploration of different machine learning algorithms and leverages hyperparameter optimization techniques to achieve the best possible performance, primarily evaluated by the Area Under the Receiver Operating Characteristic curve (AUC-ROC). The generated submission.csv file serves as the tangible output, encapsulating the predicted probabilities for each customer in the validation set.
 
+The project evaluates the performance of the selected model on the validation set using several metrics. Recently, an additional step was incorporated to explicitly compute and display the model’s accuracy. The following code illustrates how the accuracy is calculated and shown:
+
+```python
+y_true = y_val
+probs_val = best_model.predict_proba(X_val)[:,1]
+y_pred = (probs_val >= best_t).astype(int)
+
+accuracy = accuracy_score(y_true, y_pred)
+print(f"La precisión de tu modelo es: {accuracy * 100:.2f}%")
+```
+
+With this approach, the model achieved an accuracy of **86.95%** on the validation dataset. This result indicates a strong performance in classifying the bank campaign data, and provides a clear and direct metric for evaluating and comparing future models.
+
 ---
 
 ## 🛠️ Technologies Used
